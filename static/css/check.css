@@ -114,7 +114,7 @@ body{overflow-x: hidden;}
 .submit_btn input{
     width: 200px;
     height: 200px;
-    background: url(../img/check/seabird_small.png);
+    background: url(../img/check/seabird_small.PNG);
     background-repeat: no-repeat;
     border: none;
     outline: none;
