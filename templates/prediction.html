@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <title>운동 측정 입력</title>
     <!--common stylesheet-->
-    <link rel="stylesheet" href="../static/css/style.css">
+    <!--<link rel="stylesheet" href="../static/css/style.css">-->
     <!--style-->
-    <link rel="stylesheet" href="../static/css/result.css">
+    <!--<link rel="stylesheet" href="../static/css/result.css">-->
     <!--font-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/8af2116aa4.js" crossorigin="anonymous"></script>
+    <!--<link rel="preconnect" href="https://fonts.gstatic.com">-->
+    <!--<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">-->
+   <!-- <script src="https://kit.fontawesome.com/8af2116aa4.js" crossorigin="anonymous"></script>-->
     <!--common script-->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="../static/js/menu.js" defer></script>
+    <!--<script src="../static/js/menu.js" defer></script>-->
     <!--javascript-->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script>
+        function resultInsert(){
+            document.getElementById("resultForm").submit();
+        }
+    </script>
 </head>
 <body>
 <!--navigator-->
@@ -45,12 +51,13 @@
 </nav><!--end of <nav class="navbar">-->
 
 <div class="fithe_wrap">
-    <form method="get" class="content_wrap" action="http://3.19.102.157:8080/schedulePopup.do">
+    <form name="resultForm" id="resultForm"
+          method="GET" class="content_wrap" action="http://3.19.102.157:8080/schedulePopup.do">
         <!--content_head-->
         <input type="hidden" name="situp" value="{{ content['situp'] }}"/>
-        <input type="hidden" name="bend" value="{{ content['bend'] }}"/>
-        <input type="hidden" name="jump" value="{{ content['jump'] }}"/>
-        <input type="hidden" name="race" value="{{ content['race'] }}"/>
+        <input type="hidden" name="bend" value="{{ content['sitflex'] }}"/>
+        <input type="hidden" name="jump" value="{{ content['longjump'] }}"/>
+        <input type="hidden" name="race" value="{{ content['longrun'] }}"/>
         <input type="hidden" name="mid" value="{{ content['mid'] }}"/>
 
         <div class="fit_title">
@@ -59,7 +66,7 @@
 
         <div class="content_group">
             <div class="user_info">
-                <li>성별 : {{gender}}</li><!--{{ session["test_sex"] }}-->
+                <li>성별 : {{gender}}</li> <!--{{ session["test_sex"] }}-->
                 <li>키 : {{ session["height"] }} cm</li>
                 <li>몸무게 : {{ session["weight"] }} kg</li>
                 <li>허리둘레 : {{ session["core_cm"] }} cm</li>
@@ -233,7 +240,7 @@
                 <div class="content_7_section">
 					<p>캘린더에 추가</p>
 					<div>
-                        <input type="button" class="btn_group" value="Calendar">
+                        <input type="button" class="btn_group" value="Calendar" onclick="resultInsert();"/>
                     </div>
 				</div>
 
