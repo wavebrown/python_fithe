@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운동 측정 입력</title>
+    <!--common stylesheet-->
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" charset="UTF-8">
+    <!--style-->
+    <link rel="stylesheet" href="../static/css/check.css" charset="UTF-8">
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8af2116aa4.js" crossorigin="anonymous"></script>
+    <!--common script-->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!--혁진 : jquery-3.2.1.min.js-->
+    <script src="./js/menu.js" defer></script>
+    <!--javascript-->
+    <script type="text/javascript" src="../static/js/check.js"></script>
+</head>
+
+<body>
+    <!--navigator-->
+    <nav class="navbar">
+        <!--logo-->
+        <div class="navbar_logo">
+            <i class="fas fa-anchor"></i>
+            <a href="">FITHE</a>
+        </div>
+        <!--menu-->
+        <ul class="navbar_menu">
+            <li><a href="#">기초체력측정</a></li>
+            <li><a href="#">헬스장 추천</a></li>
+            <li><a href="#">게시판</a></li>
+            <li><a href="#">마이페이지</a></li>
+        </ul>
+        <!--login icon-->
+        <ul class="navbar_icons">
+            <a href="#">
+                <li>로그인<i class="fas fa-user-plus"></i></li>
+            </a>
+        </ul>
+        <!--@pad @phone-->
+        <a href="#" class="navbar_toggleBtn">
+            <i class="fas fa-bars"></i>
+        </a>
+    </nav>
+    <!--end of <nav class="navbar">-->
+
+    <section>
+        <div class="fithe_wrap">
+            <!--board box-->
+            <div class="content_wrap" id="outter">
+                <!--content_head-->
+                <div class="fit_title">
+                    <img src="../static/img/check/title_1.png">
+                    <button class="next_btn" onclick="jbFunc()">START</button>
+                </div>
+
+                <div class="content_group">
+                    <form method="POST" id="s_writeForm" name="s_writeForm" action="/prediction">
+<!--                        <input type="hidden" name="height" id="height"-->
+<!--                                        value="{{ session['height'] }}" >-->
+<!--                        <input type="hidden" name="weight" id="weight"-->
+<!--                                        value="{{ session['weight'] }}" >-->
+<!--                        <input type="hidden" name="core_cm" id="core_cm"-->
+<!--                                        value="{{ session['core_cm'] }}" >-->
+
+                        <!--1. 윗몸 일으키기-->
+                        <!--닌자거북이 by age-->
+                        <div class="chk_upd_section" data-validate="숫자만 입력해 주세요">
+                            <div class="fit_title_sub"><img src="../static/img/check/sit_up_txt.png"></div>
+                            <div class="fit_sub_explain"><img src="../static/img/check/sit_up_txt_sub.png"></div>
+                            <img class="fitness_img" src="../static/img/check/sit_up_man.png">
+
+                            <div id="account" class="account_box" data-validate="숫자만 입력해 주세요">
+                                <div class="member_content_t">
+                                    기 록 : &nbsp;&nbsp;
+                                    <input type="number" name="situp" class="account_text"
+                                        v-model="balance" >&nbsp;&nbsp;회
+                                </div>
+                                <div class="response_txt">
+                                    <span v-if="balance >= 60">
+                                        자네 혹시 나랑 같은 체육관 출신인가?
+                                        <img src="../static/img/check/grand_Turtle_1.png"
+                                             width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 50">
+                                        자네 체육관 몇년차인가?
+                                        <img src="../static/img/check/adult_Turtle.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 40">
+                                        오늘부터 50개 도전가시죠!
+                                        <img src="../static/img/check/teen_Turtle.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 30">
+                                        체육관 1년차이신가요?
+                                        <img src="../static/img/check/child_Turtle.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 20">
+                                        혹시 운동 작심 3일 중?
+                                        <img src="../static/img/check/3_Turtle.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 1">
+                                        혹시 오늘 운동 처음 시작하시는 분인가요?!
+                                        <img src="../static/img/check/baby_Turtle.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else>기록을 입력해주세요!</span>
+                                </div>
+                            </div>
+                            <button class="next_btn_1" onclick="jbFunc()">NEXT</button>
+                        </div>
+
+                        <!--2. 앞으로 굽히기-->
+                        <!--불가사리, 해파리-->
+                        <div class="chk_upd_section" data-validate="숫자만 입력해 주세요">
+                            <div class="fit_title_sub"><img src="../static/img/check/bend_forward_txt.png"></div>
+                            <div class="fit_sub_explain"><img src="../static/img/check/bend_forward_txt_sub.png"></div>
+                            <img class="fitness_img" src="../static/img/check/seated_forward_bend.png">
+                            <div id="account1" class="account_box">
+                                <div class="member_content_t">
+                                    기 록 : &nbsp;&nbsp;<input type="number" name="sitflex" class="account_text"
+                                        v-model="balance">&nbsp;&nbsp;cm
+                                </div>
+                                <div class="member_content_t">
+                                    <span v-if="balance >= 30">
+                                        당신은 활발한 해파리이시군요!
+                                        <img src="../static/img/check/Exe_Jelly.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 20">
+                                        혹시 해파리랑 친구이신가요?
+                                        <img src="../static/img/check/real_Jelly.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 10">
+                                        불가사리랑 친구이신가요?
+                                        <img src="../static/img/check/star_Fish.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 1">
+                                        당신은 연체 동물 유치원에 입학할 수 있군요!
+                                        <img src="../static/img/check/jelly_School.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance <= -1">
+                                        혹시 플라스틱 이신가요?
+                                        <img src="../static/img/check/plastic.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else="balance=0">
+                                        기록을 입력해주세요!
+                                    </span>
+                                </div>
+                            </div>
+                            <button class="next_btn_2" onclick="jbFunc()">NEXT</button>
+                        </div>
+
+                        <!--3. 오래달리기-->
+                        <!--고래/상어/물개-->
+                        <div class="chk_upd_section" data-validate="숫자만 입력해 주세요">
+                            <div class="fit_title_sub"><img src="../static/img/check/run_long_txt.png"></div>
+                            <div class="fit_sub_explain"><img src="../static/img/check/run_long_txt_sub.png"></div>
+                            <img class="fitness_img" src="../static/img/check/treadmill.png">
+                            <div id="account2" class="account_box">
+                                <div class="member_content_t">
+                                    기 록 : &nbsp;&nbsp;<input type="number" name="longrun" class="account_text"
+                                        v-model="balance">&nbsp;&nbsp;회
+                                </div>
+                                <div>
+                                    <span v-if="balance >= 70">
+                                        당신은 바다를 표류하는 향유고래!
+                                        <img src="../static/img/check/whale_1.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 50">
+                                        당신은 두 개의 심장을 가진 대왕고래!
+                                        <img src="../static/img/check/whale_2.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 30">
+                                        당신은 목표를 놓치지 않는 상어이군요!
+                                        <img src="../static/img/check/whale_3.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 20">
+                                        당신은 먹이를 찾아 헤매는 물개?!
+                                        <img src="../static/img/check/whale_4.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 1">
+                                        당신은 배부른 물개이시군요!
+                                        <img src="../static/img/check/whale_5.png"
+										    width="90" height="120">
+                                    </span>
+                                    <span v-else>기록을 입력해주세요!</span>
+                                </div>
+                            </div>
+                            <button class="next_btn_3" onclick="jbFunc()">NEXT</button>
+                        </div>
+
+                        <!--4. 10M 4회 왕복 달리기-->
+                        <!--니모-->
+                        <div class="chk_upd_section" data-validate="숫자만 입력해 주세요">
+                            <div class="fit_title_sub"><img src="../static/img/check/run_round_txt.png"></div>
+                            <div class="fit_sub_explain"><img src="../static/img/check/run_round_txt_sub.png"></div>
+                            <img class="fitness_img" src="../static/img/check/running.png">
+                            <div id="account3" class="account_box">
+                                <div class="member_content_t">
+                                    기 록 : &nbsp;&nbsp;<input type="number" name="run10m" class="account_text"
+                                        v-model="balance">&nbsp;&nbsp;초
+                                </div>
+                                <div>
+                                    <span v-if="balance >= 16">
+                                        당신은 노래를 부르는 도리!
+                                        <img src="../static/img/check/nemo_1.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 14">
+                                        당신은 배부른 니모!
+                                        <img src="../static/img/check/nemo_2.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 12">
+                                        당신은 호기심 많은 니모!
+                                        <img src="../static/img/check/nemo_3.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 10">
+                                        당신은 니모를 찾아 떠나는 멀린!
+                                         <img src="../static/img/check/nemo_4.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 1">
+                                        꺅 상어가 쫗아온다~
+                                        <img src="../static/img/check/nemo_5.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else>
+                                        기록을 입력해주세요!
+                                    </span>
+                                </div>
+                            </div>
+                            <button class="next_btn_4" onclick="jbFunc()">NEXT</button>
+                        </div>
+
+                        <!--5. 제자리 멀리뛰기-->
+                        <!--해마,게-->
+                        <div class="chk_upd_section" data-validate="숫자만 입력해 주세요">
+                            <div class="fit_title_sub"><img src="../static/img/check/jump_long_txt.png"></div>
+                            <div class="fit_sub_explain"><img src="../static/img/check/jump_long_txt_sub.png"></div>
+                            <img class="fitness_img" src="../static/img/check/long_jump.png">
+                            <div id="account4" class="account_box">
+                                <div class="member_content_t">
+                                    기 록 : &nbsp;&nbsp;<input type="number" name="longjump" class="account_text"
+                                        v-model="balance">&nbsp;&nbsp;cm
+                                </div>
+                                <div>
+                                    <span v-if="balance >= 240">
+                                        당신은 전설의 해마?!
+                                        <img src="../static/img/check/horse_1.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 220">
+                                        당신은 급식시간의 해마 학생?!
+                                        <img src="../static/img/check/horse_2.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 200">
+                                        당신은 전설의 새우?!
+                                         <img src="../static/img/check/horse_3.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 180">
+                                        당신은 통통 튀는 새우!
+                                         <img src="../static/img/check/horse_4.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 160">
+                                        당신은 롱다리 소유자?!
+                                        <img src="../static/img/check/horse_5.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 140">
+                                        당신은 걸음마 배우는 게?!
+                                        <img src="../static/img/check/horse_6.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else-if="balance >= 1">
+                                        당신은 휴식 중인 소라게?!
+                                        <img src="../static/img/check/horse_7.png"
+										width="90" height="120">
+                                    </span>
+                                    <span v-else>기록을 입력해주세요!</span>
+                                </div>
+                            </div>
+                            <!--button-->
+                            <div id="boardBut" class="result_btn_section">
+                                <input type="submit" id="sUpdate" value="">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--<div class="content_group">-->
+            </div>
+            <!--end of div class="content_wrap" id="outter">-->
+        </div>
+        <!--end of <div class="fithe_wrap">-->
+
+        <!--image-->
+        <div class="shark_img">
+            <img src="../static/img/check/shark1.png" class="skark">
+        </div>
+<!--        <div class="turtle_img">-->
+<!--            <img src="../static/img/check/turtle.png" class="turtle">-->
+<!--        </div>-->
+		<div class="diver_img">
+            <img src="../static/img/check/diver.png" class="diver"
+			width="70" height="180">
+        </div>
+    </section>
+
+
+    <div class="content_bottom_img">
+        <img src="../static/img/check/coral_bottom_img_pc.png">
+        <img src="../static/img/check/coral_bottom_img.png">
+    </div>
+
+    <!--vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 데이터에 맞는 문구 출력
+        const account = new Vue({
+            el: '#account',
+            data: { balance: "" }
+        });
+        const account1 = new Vue({
+            el: "#account1",
+            data: { balance: "" }
+        });
+
+        const account2 = new Vue({
+            el: "#account2",
+            data: { balance: "" }
+        });
+
+        const account3 = new Vue({
+            el: "#account3",
+            data: { balance: "" }
+        });
+
+        const account4 = new Vue({
+            el: "#account4",
+            data: { balance: "" }
+        });
+    </script>
+
+    <!--=========================// START footer //=========================-->
+    <div class="footer_group">
+        <!--kosmo info-->
+        <div>
+            <div>
+                <ul>
+                    <li><a href="#">이용약관 ㅣ </a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                </ul>
+                <p>(153-759) 서울시 금천구 가산동 426-5 월드메르디앙 2차 404호</p>
+                <p>Copyright (C) 2021 KOSMO FITHE. All rights reserved.</p>
+                <ul class="sns">
+                    <li><a href="#"><img src="../static/img/facebook_logo.png" width="25"></a></li>
+                    <li><a href="https://www.instagram.com/fithe_2021/"><img src="../static/img/instagram_circle.png"
+                                width="27"></a></li>
+                    <li><a href="https://www.notion.so/springiscoming/2021-FITHE-8f4a814cfc5040bbbb92897833f7676a"><img
+                                src="../static/img/blog_logo.png" width="20"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--=========================// END footer //=========================-->
+</body>
+
+</html>

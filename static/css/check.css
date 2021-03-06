@@ -1,0 +1,263 @@
+@charset "utf-8";
+body{overflow-x: hidden;}
+/*----------------------------------------------------------------------survey_form--*/
+
+.press_form{width: 600px; margin: auto; text-align: center;}
+/*title*/
+.content_head img{width: 40%; margin: 10px auto 0; text-align: center;}
+
+/*survey input form*/
+.pressEvent{margin-bottom: 50px; margin-top: 30px;}
+/*survey items title*/
+.pressEvent label{width:100px; display: inline-block;}
+
+/*text input*/
+.com_in_txt{width: 200px; height: 30px;}
+.pressEvent input[type=text]{width: 193px; height: 30px;}
+.pressEvent input:focus{
+    outline:none;
+    border-bottom:2px solid var(--accent-color);
+}
+.pressEvent input::after{
+    content: "";
+    width: 90%;
+    outline:none;
+    display: block;
+    border-bottom: 1px solid lightgray;
+    margin: 30px 0;
+}
+
+/*sun_light effect*/
+.circle_light {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top:10%;
+    right: 90%;
+    border: none;
+    border-radius: 50%;
+    background-color: yellow;
+    box-shadow: 5px 5px 150px 200px yellow;
+    opacity: 0.2;
+    animation-name:  sun_light;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-delay: 0;
+}
+
+
+/*--------------------------------------------------------------------------common--*/
+.member_content_t select{
+    margin-bottom: 20px;
+}
+.member_content_t input {
+    margin: 10px 0px;
+    height: 30px;
+    border: 1px solid #FCFCFF;
+    border-bottom: 2px solid medium;
+}
+.member_content_t input:focus{
+    outline:none;border-bottom:2px solid var(--accent-color);
+}
+
+/*----------------------------------------------------------------------sUpdateForm--*/
+/*menu color change*/
+.navbar{box-shadow: 1px 1px 10px 1px whitesmoke;}
+/*content section*/
+.chk_upd_section{
+    width: 100%;
+    height: 600px;
+    padding: 30px 20px 400px;
+    margin-bottom: 20px;
+    box-sizing:border-box;
+    text-align: center;
+}
+
+/*title*/
+.fit_title{width:100%; margin: 0 auto; padding:200px 0 400px; text-align: center;}
+.fit_title img{width: 300px;}
+.next_btn{display: block; margin: auto;}
+
+/*start*/
+.fit_title_sub{width:100%; margin: auto; text-align: center;}
+.fit_title_sub img{width: 300px;}
+.fit_sub_explain img{width: 400px;}
+.fitness_img{width: 200px;}
+
+/*vue section*/
+.response_txt{margin: auto; text-align: center;}
+
+/*btn*/
+.next_btn,.next_btn_1,.next_btn_2,.next_btn_3,.next_btn_4{
+    width: 150px;
+    height: 30px;
+    margin-top: 30px;
+    background-color: white;
+    border: none;
+    opacity: 0.9;
+}
+.next_btn:hover{background-color: skyblue; color: white;}
+/*result btn*/
+.result_btn_section{width: 45%; height:300px; margin: auto; margin-top: 90px; position: relative; z-index: 100;}
+.result_btn_section input{
+    width: 400px;
+    height: 500px;
+    background-color: transparent;
+    background: url(../img/check/treasure_box_1.png);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    border: none;
+    outline: none;
+    position: relative;
+}
+/*result btn*/
+.submit_btn input{
+    width: 200px;
+    height: 200px;
+    background: url(../img/check/seabird_small.png);
+    background-repeat: no-repeat;
+    border: none;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+    /*animation*/
+    animation-name: turtle;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0;
+}
+
+/*bottom coral line*/
+.content_bottom_img{position:absolute; bottom:0;}
+.content_bottom_img img:nth-of-type(1){width: 100%;}
+.content_bottom_img img:nth-of-type(2){display: none;}
+
+/*---------------------------------------------------------------------------------*/
+/* weave motion*/
+.ocean {height: 5%; width:100%; position:absolute; bottom:0; left:0; background: #015871;}
+.wave {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x;
+    position: absolute;
+    top: -100px;
+    width: 6400px;
+    height: 198px;
+    animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+    transform: translate3d(0, 0, 0);
+}
+
+.wave:nth-of-type(2) {
+    top: -120px;
+    animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+    opacity: 1;
+}
+/* suffer */
+.ocean img{position: relative; left: 80%; bottom: 200px; opacity: 1;}
+.suffer{animation: suffer 10s linear infinite;}
+section{
+    width: 100%;
+    height: 580vh;
+    color: #fff;
+    background: linear-gradient(45deg, #000051,#004ba0, #3B6272, #3B77AF, #5AB6DB, #A1E9F2, #DAF7F8);
+    background-size: 100% 100%;
+    position: relative;
+    animation: change 12s ease-in-out infinite;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* shark */
+.shark_img{position: relative; left: 80%; bottom: 2300px; opacity: 0.7;}
+.skark{
+    animation-name:  shark;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-delay: 6s;
+}
+/* turtle */
+.turtle_img{position: relative; right: 25%; bottom: 3000px; opacity: 0.7;}
+.turtle{
+    animation-name: turtle;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0;
+}
+/* diver*/
+.diver_img{position: relative; left: 90%; bottom: 1000px; opacity: 0.5;}
+.diver{
+    animation-name: diver;
+    animation-duration: 90s;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* wave */
+@keyframes wave {
+    0% {margin-left: 0;}
+    100% {margin-left: -1600px;}
+}
+/* wave */
+@keyframes swell {
+    100% {transform: translate3d(0,-25px,0);}
+    50% {transform: translate3d(0,5px,0);}
+}
+
+/* suffer */
+@keyframes suffer{
+    0% {transform:translate(200px,-50px);}
+    10% {transform:translate(50px,-0px);}
+    25% {transform:translate(-100px,10px);}
+    40% {transform:translate(-300px,20px);}
+    55% {transform:translate(-500px,30px);}
+    70% {transform:translate(-700px,0px);}
+    85% {transform:translate(-900px,-20px);}
+    100% {transform:translate(-1100px,-50px);}
+}
+
+/* under the sea */
+@keyframes change{
+    0%{background-position: 0 50%;}
+    50%{background-position: 100% 50%;}
+    100%{background-position: 0 50%;}
+}
+
+/* sun_light */
+@keyframes sun_light{
+    0% {transform:translate(200px,-50px);opacity: 0.1;}
+    50% {transform:translate(50px,50px); background-color: rgb(255, 177, 87); box-shadow: 10px 10px 100px 200px rgb(255, 177, 87); opacity: 0.3;}
+    100% {transform:translate(30px,70px);opacity: 0.1;}
+}
+
+
+/*---------------------------------------------------------------------------------*/
+/* shark */
+@keyframes shark{
+    0%{transform:translate(400px,-50px);}
+    25%{transform: rotate(30deg);}
+    50%{transform:translate(-400px,-200px);}
+    100%{transform:translate(-1500px,-50px);}
+}
+/* turtle */
+@keyframes turtle{
+    0%{transform: rotate(10deg);}
+    50%  {transform: translate(40px,20px)}
+    100%  {transform: translate(-30px,-20px);}
+}
+
+/* diver */
+@keyframes diver{
+    0%{transform: translateY(0px)}
+    50%{transform: translateY(-3000px)}
+    100%{transform: translateY(-6000px)}
+}
+
+
+/*---------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------*/
+/*태블릿 이하 사이즈*/
+@media screen and (max-width: 768px){
+    .content_wrap{margin-top: 5px;}
+
+    /*bottom coral line*/
+    .content_bottom_img img:nth-of-type(2){display:block; width: 100%;}
+    .content_bottom_img img:nth-of-type(1){display: none;}
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST" id="f_writeForm" name="f_writeForm">
+{# This hidden_tag is a CSRF security feature. #}
+{{ form.hidden_tag() }}
+<div>
+    <span >{{ form.test_sex.label }}</span><br>
+    <select name="test_sex" style="font-size : 14px; color : #767676; margin-top: 10px; background-color: transparent;
+          border: none;" >
+              <option value="1">남성(man)</option>
+              <option value="0">여성(woman)</option>
+    </select>
+</div><br>
+<div class="wrap-input100 validate-input" data-validate="숫자만 입력해 주세요">
+          <span class="label-input100">{{ form.height.label }}(cm)</span><br>
+          <input class="input100" type="number" name="height" placeholder="숫자만 입력해 주세요." required/>
+          <span class="focus-input100"></span>
+</div><br>
+<div class="wrap-input100 validate-input" data-validate="숫자만 입력해 주세요">
+          <span class="label-input100">{{ form.weight.label }}(kg)</span><br>
+          <input class="input100" type="number" name="weight" placeholder="숫자만 입력해 주세요." required/>
+          <span class="focus-input100"></span>
+</div><br>
+
+<div class="wrap-input100 validate-input" data-validate="숫자만 입력해 주세요">
+          <span class="label-input100">{{ form.core_cm.label }}(cm)</span><br>
+          <input class="input100" type="number" name="core_cm" placeholder="숫자만 입력해 주세요." required/>
+          <span class="focus-input100"></span>
+</div><br>
+<div class="wrap-input100 validate-input" data-validate="숫자만 입력해 주세요">
+          <span class="label-input100">{{ form.situp.label }}</span><br>
+          <input class="input100" type="number" name="situp" placeholder="숫자만 입력해 주세요." required/>
+          <span class="focus-input100"></span>
+</div><br>
+<div class="wrap-input100 validate-input" data-validate="숫자만 입력해 주세요">
+          <span class="label-input100">{{ form.sitflex.label }}</span><br>
+          <input class="input100" type="number" name="sitflex" placeholder="숫자만 입력해 주세요." required/>
+          <span class="focus-input100"></span>
+</div><br>
+<div class="wrap-input100 validate-input" data-validate="숫자만 입력해 주세요">
+          <span class="label-input100">{{ form.longrun.label }}</span><br>
+          <input class="input100" type="number" name="longrun" placeholder="숫자만 입력해 주세요." required/>
+          <span class="focus-input100"></span>
+</div><br>
+<div class="wrap-input100 validate-input" data-validate="숫자만 입력해 주세요">
+          <span class="label-input100">{{ form.run10m.label }}</span><br>
+          <input class="input100" type="number" name="run10m" placeholder="숫자만 입력해 주세요." required/>
+          <span class="focus-input100"></span>
+</div><br>
+<div class="wrap-input100 validate-input" data-validate="숫자만 입력해 주세요">
+          <span class="label-input100">{{ form.longjump.label }}</span><br>
+          <input class="input100" type="number" name="longjump" placeholder="숫자만 입력해 주세요." required/>
+          <span class="focus-input100"></span>
+</div><br>
+<br>
+ {{ form.submit() }}
+    </form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>age</title>
+</head>
+<body>
+<h1>Welcome</h1>
+<form method=”POST”>
+ {# This hidden_tag is a CSRF security feature. #}
+ {{ form.hidden_tag() }}
+    {{ form.form.test_sex.label }} {{form.test_sex}}
+ <br>
+    {{form.height.label}} {{form.height}}
+ <br>
+    {{form.weight.label}}{{form.weight}}
+ <br>
+    {{form.fat.label}}{{form.fat}}
+ <br>
+    {{form.core_cm.label}}{{form.core_cm}}
+ <br>
+    {{form.situp.label}}{{form.situp}}
+ <br>
+    {{form.sitflex.label}}{{form.sitflex}}
+ <br>
+    {{form.longrun.label}}{{form.longrun}}
+ <br>
+    {{form.run10m.label}}{{form.run10m}}
+ <br>
+    {{form.longjump.label}}{{form.longjump}}
+ <br>
+ {{ form.submit() }}
+</form>
+</body>
+</html>

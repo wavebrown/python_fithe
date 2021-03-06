@@ -1,0 +1,116 @@
+<!--
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 신체 입력</title>
+    <!--common stylesheet-->
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" charset="UTF-8">
+    <!--style-->
+    <link rel="stylesheet" type="text/css" href="../static/css/check.css">
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8af2116aa4.js" crossorigin="anonymous"></script>
+    <!--common script-->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="../static/js/menu.js" defer></script>
+    <!--vue-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--javascript--->
+    <script src="../static/js/check.js" defer></script>
+</head>
+
+<body id="rainbow">
+
+<!--navigator-->
+<nav class="navbar">
+    <!--logo-->
+    <div class="navbar_logo">
+        <i class="fas fa-anchor"></i>
+        <a href="">FITHE</a>
+    </div>
+    <!--menu-->
+    <ul class="navbar_menu">
+        <li><a href="#">기초체력측정</a></li>
+        <li><a href="#">헬스장 추천</a></li>
+        <li><a href="#">게시판</a></li>
+        <li><a href="#">마이페이지</a></li>
+    </ul>
+    <!--login icon-->
+    <ul class="navbar_icons">
+        <a href="#">
+            <li>로그인<i class="fas fa-user-plus"></i></li>
+        </a>
+    </ul>
+    <!--@pad @phone-->
+    <a href="#" class="navbar_toggleBtn">
+        <i class="fas fa-bars"></i>
+    </a>
+</nav>
+<!--end of <nav class="navbar">-->
+
+<div class="fithe_wrap">
+    <!--board box-->
+    <div class="content_wrap" id="outter">
+
+        <!-- community board head -->
+        <div id="boardTit" class="content_head">
+            <img src="../static/img/check/basic_title_txt.png">
+        </div>
+        <div class="content_group">
+
+            <form method="POST" id="f_writeForm" name="f_writeForm" class="press_form">
+            {# This hidden_tag is a CSRF security feature. #}
+            {{ form.hidden_tag() }}
+                <div class="pressEvent">
+                    <div class="member_content_t">
+                        <label>성별</label>
+                        <select name="test_sex" class="com_in_txt">
+                             <option value="3" selected></option>
+                             <option value="1">남성(man)</option>
+                             <option value="0">여성(woman)</option>
+                        </select>
+                    </div>
+                    <div class="member_content_t" data-validate="숫자만 입력해 주세요">
+                        <label>키</label>
+                        <input type="number" name="height" placeholder="숫자만 입력해 주세요." required>cm
+                    </div>
+                    <div class="member_content_t" data-validate="숫자만 입력해 주세요">
+                        <label>몸무게</label>
+                        <input type="number" name="weight" placeholder="숫자만 입력해 주세요." required>kg
+                    </div>
+                    <div class="member_content_t" data-validate="숫자만 입력해 주세요">
+                        <label>허리둘레</label>
+                        <input type="number" name="core_cm" placeholder="숫자만 입력해 주세요." required>cm
+                    </div>
+                </div>
+                <div id="boardBut" class="submit_btn">
+                    <input type="submit" value="">
+                    <!-- {{ form.submit() }} -->
+                </div>
+            </form>
+        </div>
+        <!--<div class="content_group">-->
+    </div>
+    <div class="ocean">
+        <img src="../static/img/check/suffer4.png" class="suffer">
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+</div>
+<!--end of <div class="fithe_wrap">-->
+
+<div class="circle_light"></div>
+
+</body>
+
+</html>

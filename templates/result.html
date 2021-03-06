@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운동 측정 입력</title>
+    <!--common stylesheet-->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <!--style-->
+    <link rel="stylesheet" href="../static/css/result.css">
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8af2116aa4.js" crossorigin="anonymous"></script>
+    <!--common script-->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="../js/menu.js" defer></script>
+    <!--javascript-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+</head>
+<body>
+<body>
+<!--navigator-->
+<nav class="navbar">
+    <!--logo-->
+    <div class="navbar_logo">
+        <i class="fas fa-anchor"></i>
+        <a href="">FITHE</a>
+    </div>
+    <!--menu-->
+    <ul class="navbar_menu">
+        <li><a href="#">기초체력측정</a></li>
+        <li><a href="#">헬스장 추천</a></li>
+        <li><a href="#">게시판</a></li>
+        <li><a href="#">마이페이지</a></li>
+    </ul>
+    <!--login icon-->
+    <ul class="navbar_icons">
+        <a href="#">
+            <li>로그인<i class="fas fa-user-plus"></i></li>
+        </a>
+    </ul>
+    <!--@pad @phone-->
+    <a href="#" class="navbar_toggleBtn">
+        <i class="fas fa-bars"></i>
+    </a>
+</nav>
+<!--end of <nav class="navbar">-->
+
+<div class="fithe_wrap">
+    <form method="post" class="content_wrap">
+        <!--content_head-->
+        <div class="fit_title">
+            Result
+        </div>
+        <div class="content_group">
+
+            <!-- --------------------1 section-------------------- -->
+            <div class="content_1_section">
+                <!--input value-->
+                <div>
+                    <img src="../static/img/result/person_icon.png" alt="person">
+                    <ul>
+                        <li>test_sex : {{ session["test_sex"] }}</li>
+                        <li>test_name : {{ sex_name }}</li>
+                        <script>
+                            var sex_name;
+                            var sex_num = '{{ session["test_sex"] }}';
+                            if (sex_num == 1){
+                                var sex_name = "남자";
+                            }else{
+                                var sex_name = "여자";
+                            }
+                        </script>
+
+                        <li>height : {{ session["height"] }}</li>
+                        <li>weight : {{ session["weight"] }}</li>
+                        <li>fat : {{ session["fat"] }}</li>
+                        <li>core_cm : {{ session["core_cm"] }}</li>
+                        <li>situp : {{ session["situp"] }}</li>
+                        <li>sitflex : {{ session["sitflex"] }}</li>
+                        <li>longrun : {{ session["longrun"] }}</li>
+                        <li>run10m : {{ session["run10m"] }}</li>
+                        <li>longjump : {{ session["longjump"] }}</li>
+                    </ul>
+                </div>
+                <!--total chart-->
+                <div>
+                    <canvas id="myRadarChart"></canvas>
+                </div>
+            </div>
+
+            <!-- --------------------2 section-------------------- -->
+            <div class="content_2_section">
+                <!--체지방률 : 단순 값 비교-->
+                <div>
+                    <div>
+                        <img src="" alt="적당한 사진">
+                        <canvas id="myHalfDoughnut"></canvas>
+                    </div>
+                    <div>당신의 체지방률은 : {{results_body}}입니다.</div>
+                </div>
+
+                <!--신체나이 : 반 pie 차트로 위험도 표시-->
+                <div>
+                    <div>
+                        <img src="" alt="적당한 사진">
+                    </div>
+                    <div>당신의 신체나이는 : {{results_age}}세 입니다.</div>
+                </div>
+            </div>
+
+            <!-- --------------------3 section-------------------- -->
+            <div class="content_3_section">
+                <!--sit-up : 윗몸 일으키기 - 근지구력 -->
+                <div>
+
+                </div>
+                <!--sit flex : 윗몸 앞으로 굽히기 - 유연성 -->
+                <div>
+                    dddddddddddddddddddddddddddd
+                </div>
+            </div>
+
+            <!-- --------------------4 section-------------------- -->
+            <div class="content_4_section">
+                <!--long run : 오래 달리기 - 심폐지구력 -->
+                <div>
+
+                </div>
+                <!--run 10m : 왕복 달리기 - 민첩성 -->
+                <div>
+                    dddddddddddddddddddddddddddd
+                </div>
+            </div>
+
+            <!-- --------------------5 section-------------------- -->
+            <div class="content_5_section">
+                <!--long jump : 제자리 멀리뛰기 - 순발력 -->
+                <div>
+
+                </div>
+                <!--total chart by AGE-->
+                <div>
+                    <canvas id="myChart"></canvas>
+                    <div>나의 기록비교</div>
+                </div>
+            </div>
+
+            <!-- --------------------6 section-------------------- -->
+            <div class="content_6_section">
+                >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><br>
+                종합평가<br>
+                >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            </div>
+
+            <!-- --------------------7 section-------------------- -->
+            <div class="content_7_section">
+                <p>운동추천</p>
+                <div>
+                    <button type="button"></button>
+                </div>
+            </div>
+
+        </div><!--end of <div class="content_group">-->
+    </form>
+</div>
+<!--end of <div class="fithe_wrap">-->
+
+<!--=========================// START footer //=========================-->
+<div class="footer_group">
+    <!--kosmo info-->
+    <div>
+        <div>
+            <ul>
+                <li><a href="#">이용약관 ㅣ </a></li>
+                <li><a href="#">개인정보처리방침</a></li>
+            </ul>
+            <p>(153-759) 서울시 금천구 가산동 426-5 월드메르디앙 2차 404호</p>
+            <p>Copyright (C) 2021 KOSMO FITHE. All rights reserved.</p>
+            <ul class="sns">
+                <li><a href="#"><img src="../img/facebook_logo.png" width="25"></a></li>
+                <li><a href="https://www.instagram.com/fithe_2021/"><img src="../img/instagram_circle.png"
+                                                                         width="27"></a></li>
+                <li><a href="https://www.notion.so/springiscoming/2021-FITHE-8f4a814cfc5040bbbb92897833f7676a"><img
+                        src="../img/blog_logo.png" width="20"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--=========================// END footer //=========================-->
+
+
+
+<!-------------------------------------------------------------------->
+<script>
+    //radar
+    var ctx = document.getElementById("myRadarChart").getContext('2d');
+    var options = {
+        responsive:false,
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    offsetGridLines: true
+                }
+            }]
+        }
+    };
+    var myRadarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['situp','sitflex','longrun','run10m','longjump'],
+            datasets: [
+                {
+                    label: '나의 기록',
+                    data: [{{session['situp']}},  {{session['sitflex']}}, {{session['longrun']}}
+    ,{{session['run10m']}},{{session['longjump']}}
+    ],
+    backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)'],
+        borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)'],
+        borderWidth: 1
+    }
+    ,
+    {
+        label: "평균값",
+            data: [{{pivot_data[0]}},{{pivot_data[1]}},{{pivot_data[2]}}
+    ,{{pivot_data[3]}},{{pivot_data[4]}}
+    ],
+        backgroundColor: [
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)'
+        ],
+            borderColor: [
+        'rgba(54, 162, 235, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(54, 162, 235, 1)'
+    ],
+        borderWidth: 1
+    }
+
+
+    ]
+    },
+    options: options
+    });
+</script>
+
+<!-------------------------------------------------------------------->
+<script>
+    // 어떻게 가져오지..?
+    var num = {{session.results_body}};
+    //
+    var ctx = document.getElementById("myHalfDoughnut").getContext('2d');
+    var options = {
+        responsive:false,
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    offsetGridLines: true
+                }
+            }]
+        }
+    };
+    var myHalfDoughnut = new Chart(ctx, {
+        type:'doughnut',
+        data:{
+            labels: ["pink"],
+            datasets: [
+                {
+                label: [],
+                data: [num, 1-num],
+                backgroundColor: ["#FF6384"],
+                hoverBackgroundColor: ["#FF6384" ],
+                borderWidth: 1
+                }
+                /*{
+                label: "평균값",
+                data: [{{}}],
+                backgroundColor: [],
+                borderColor: [],
+                borderWidth: 1
+                }*/
+            ]
+        }
+        /*options: options*/
+    });
+</script>
+
+<!-------------------------------------------------------------------->
+<script>
+    //horizontalBar
+
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var options = {
+        responsive:true,
+        legend: { display: false },
+        element: {
+            center:{
+                text: Math.round(num*100),
+                fontStyle:'Helvetica',   // Default : Arial
+                sidePadding: 15          // Default : 20 (as a percentage)
+            }
+        },
+        maintainAspectRatio: false,
+        cutoutPercentage: 70,
+        animation: false,
+        rotation: 1*Math.PI,
+        circumference: 1*Math.PI
+    };
+
+    var myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: ['situp','sitflex','longrun','run10m','longjump'],
+            datasets: [
+                {
+                    label: '나의 기록',
+                    data: [{{session['situp']}},  {{session['sitflex']}}, {{session['longrun']}}
+    ,{{session['run10m']}},{{session['longjump']}}
+    ],
+    backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 99, 132, 0.2)'],
+        borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)',
+        'rgba(255,99,132,1)'],
+        borderWidth: 1
+    }
+    ,
+    {
+        label: "평균값",
+            data: [{{pivot_data[0]}},{{pivot_data[1]}},{{pivot_data[2]}}
+    ,{{pivot_data[3]}},{{pivot_data[4]}}
+    ],
+        backgroundColor: [
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(54, 162, 235, 0.2)'
+        ],
+            borderColor: [
+        'rgba(54, 162, 235, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(54, 162, 235, 1)'
+    ],
+        borderWidth: 1
+    }
+
+
+    ]
+    },
+    options: options
+    });
+
+</script>
+
+
+
+
+<!-------------------------------------------------------------------->
+<!--
+<script>
+    var ctx = document.getElementById("myHalfDoughnut").getContext('2d');
+    var options = {
+        responsive:false,
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    offsetGridLines: true
+                }
+            }]
+        }
+    };
+    var myHalfDoughnut = new Chart(ctx, {
+        type:'doughnut',
+        data:{
+            labels: [],
+            datasets: [
+                {
+                    label: [],
+                    data: [{{}}],
+            backgroundColor: [],
+            borderColor: [],
+            borderWidth: 1
+        },
+    {
+        label: "평균값",
+            data: [{{}}],
+        backgroundColor: [],
+            borderColor: [],
+        borderWidth: 1
+    }
+    ]
+    },
+    options: options
+    });
+</script>
+-->
+
+
+
+</body>
+</body>
+</html>

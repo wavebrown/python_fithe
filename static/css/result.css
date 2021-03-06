@@ -1,0 +1,186 @@
+@charset "utf-8";
+
+.fit_title{
+    width: 300px;
+    margin: 50px auto;
+    text-align: center;
+    font-size: 18pt;
+    font-weight: bold;
+    color: lightgray;
+}
+
+/*---------------------------------section common----*/
+.user_info,
+.content_1_section,
+.content_2_section,
+.content_3_section,
+.content_4_section,
+.content_5_section{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+.content_1_section,
+.content_2_section,
+.content_3_section,
+.content_4_section{
+    height: 300px;
+}
+.content_6_section,
+.content_7_section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+
+.content_1_section>div,
+.content_2_section>div,
+.content_3_section>div,
+.content_4_section>div,
+.content_5_section>div{
+    width: 50%;
+    text-align: center;
+    border: 1px solid whitesmoke;
+}
+
+/*-------txt-------*/
+.result_txt_part{font-size: 13pt; font-weight: 800; color: gray;}
+.txt_highlight,
+#cnt_val1,
+#cnt_val2{
+    color: var(--accent-color);
+}
+
+/*-------graph-------*/
+#situpChart,
+#sitflexChart,
+#longrunChart,
+#run10mChart,
+#longjumpChart{
+    height: 200px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+
+/*--------------------------------------information--*/
+.user_info{background-color: whitesmoke; color: gray; text-align: center;}
+.user_info li{border-left: 1px solid #c0c0c0; padding: 0px 30px;}
+.user_info li:first-of-type{border-left: none;}
+
+
+/*--------------------------------------section 1----*/
+.content_1_section{padding-top: 20px; color: gray;}
+.content_1_section div{padding-top: 30px;}
+/*section 1 : 1*/
+.content_1_section>div:first-of-type{width: 50%; display: flex; flex-direction: row;}
+.content_1_section div>div{width: 40%;}
+.content_1_section div>div>img{height: 200px; display: block; margin: auto;}
+.content_1_section div ul{height: 150px;}
+.content_1_section div ul p{background-color: #01CECE; color: white;}
+/*section 1 : 2*/
+#myChart{width:200px; height: 200px; padding: 10px 20px; box-sizing: border-box;}
+
+
+/*--------------------------------------section 2----*/
+.content_2_section>div{padding-top: 30px}
+/*section 2 : 1*/
+.content_2_section>div:first-of-type li{font-size: 10pt; color: darkgray;}
+#myHalfDoughnut{width:200px; display: block; margin: auto;}
+/*section 2 : 2*/
+.change_txt{
+    font-size: 80pt;
+    color: whitesmoke;
+    text-shadow: 4px 4px 0px rgba(54, 162, 235, 0.2),
+                 6px 6px 0px rgba(255, 99, 132, 0.2),
+                 10px 60px 0px rgba(54, 162, 235, 0.5);
+    animation-name: alternate-txt;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+/*animation*/
+@keyframes alternate-txt {
+    from{
+        color: rgba(54, 162, 235, 0.2);
+        text-shadow: 4px 4px 0px rgba(255, 99, 132, 0.2),
+        6px 6px 0px rgba(54, 162, 235, 0.5),
+        10px 10px 0px whitesmoke;
+    }
+    20%{
+        color: rgba(255, 99, 132, 0.2);
+        text-shadow: 4px 4px 0px rgba(54, 162, 235, 0.5),
+        6px 6px 0px whitesmoke,
+        10px 10px 0px rgba(54, 162, 235, 0.2);
+    }
+    40%{
+        opacity: 0.2;
+    }
+    60%{
+        color: rgba(54, 162, 235, 0.5);
+        text-shadow: 4px 4px 0px whitesmoke,
+        6px 6px 0px rgba(54, 162, 235, 0.2),
+        10px 10px 0px rgba(255, 99, 132, 0.2);
+    }
+    to {
+        color: whitesmoke;
+        text-shadow: 4px 4px 0px rgba(54, 162, 235, 0.2),
+        8px 8px 0px rgba(255, 99, 132, 0.2),
+        12px 12px 0px rgba(54, 162, 235, 0.5);
+    }
+}
+/*--------------------------------------section 3----*/
+.content_3_section>div{padding-top: 30px; margin: auto;}
+/*--------------------------------------section 4----*/
+.content_4_section>div{padding-top: 30px; margin: auto;}
+/*--------------------------------------section 5----*/
+.content_5_section>div{height: 300px; padding-top: 30px; margin: auto;}
+#myRadarChart{width: 250px; margin: auto;}
+/*--------------------------------------section 6----*/
+.content_6_section{background-color: whitesmoke; padding: 20px;}
+.content_6_section p img{width: 15px; padding-right: 10px;}
+
+/*--------------------------------------section 7----*/
+#button_section button{margin-right: 10px;}
+/*-------btn-------*/
+.btn_group{
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    line-height: 40px;
+}
+.btn_group:hover{
+    background-color: var(--accent-color);
+    color: white;
+    font-weight:800;
+    cursor: pointer;
+}
+
+
+
+/*========================================================================*/
+@media screen and (max-width: 768px){
+    .content_1_section,
+    .content_2_section,
+    .content_3_section,
+    .content_4_section,
+    .content_5_section,
+    .content_6_section,
+    .content_7_section{
+        flex-direction: column;
+    }
+    .content_1_section>div,
+    .content_2_section>div,
+    .content_3_section>div,
+    .content_4_section>div,
+    .content_5_section>div{
+        width: 100%;
+    }
+
+}

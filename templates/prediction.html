@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>운동 측정 입력</title>
+    <!--common stylesheet-->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <!--style-->
+    <link rel="stylesheet" href="../static/css/result.css">
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8af2116aa4.js" crossorigin="anonymous"></script>
+    <!--common script-->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="../static/js/menu.js" defer></script>
+    <!--javascript-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+</head>
+<body>
+<!--navigator-->
+<nav class="navbar">
+    <!--logo-->
+    <div class="navbar_logo">
+        <i class="fas fa-anchor"></i>
+        <a href="">FITHE</a>
+    </div>
+    <!--menu-->
+    <ul class="navbar_menu">
+        <li><a href="#">기초체력측정</a></li>
+        <li><a href="#">헬스장 추천</a></li>
+        <li><a href="#">커뮤니티</a></li>
+        <li><a href="#">운동영상 추천</a></li>
+    </ul>
+    <!--login icon-->
+    <ul class="navbar_icons">
+        <a href="#">
+            <li>로그인<i class="fas fa-user-plus"></i></li>
+        </a>
+    </ul>
+    <!--@pad @phone-->
+    <a href="#" class="navbar_toggleBtn">
+        <i class="fas fa-bars"></i>
+    </a>
+</nav><!--end of <nav class="navbar">-->
+
+<div class="fithe_wrap">
+    <form method="post" class="content_wrap">
+        <!--content_head-->
+        <div class="fit_title">
+            기초체력 및 신체 분석 결과
+        </div>
+
+        <div class="content_group">
+            <div class="user_info">
+                <li>성별 : {{gender}}</li><!--{{ session["test_sex"] }}-->
+                <li>키 : {{ session["height"] }} cm</li>
+                <li>몸무게 : {{ session["weight"] }} kg</li>
+                <li>허리둘레 : {{ session["core_cm"] }} cm</li>
+            </div>
+            <!-- --------------------1 section-------------------- -->
+            <div class="content_1_section">
+                <!--input value-->
+                <div>
+                    <div><img src="../static/img/result/person_icon.png"></div>
+                    <ul>
+                        <p>기초 체력 입력 목록</p>
+                        <li>윗몸일으키기 : {{ content["situp"] }} 회</li>
+                        <li>앞으로 굽히기 : {{ content["sitflex"] }} cm</li>
+                        <li>오래 달리기 : {{ content["longrun"] }} 분</li>
+                        <li>왕복 10m 달리기 : {{ content["run10m"] }} 분</li>
+                        <li>멀리 뛰기 : {{ content["longjump"]*10 }} cm</li>
+                    </ul>
+                </div>
+                <!--total chart-->
+                <div>
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div><!--end of <div class="content_1_section">-->
+
+
+            <!-- --------------------2 section-------------------- -->
+            <div class="content_2_section">
+                <!--체지방률 : 단순 값 비교-->
+                <div>
+                    <div class="result_txt_part">체지방률 {{results_body}}%</div>
+                    <canvas id="myHalfDoughnut"></canvas>
+                    <div>
+                        <li>여성 : 18~22.9(정상), 23~27.9(경계), 28~32.9(이상), 33(비만)</li>
+                        <li>남성 : 8~15.9(정상), 16~19.9(경계), 20~24.9(이상), 25(비만)</li>
+                    </div>
+                </div>
+
+                <!--신체나이 : 반 pie 차트로 위험도 표시-->
+                <div>
+                    <div class="result_txt_part">신체나이</div>
+                    <div>
+                        <span class="change_txt">{{results_age}}</span>
+                    </div>
+                </div>
+            </div><!--end of <div class="content_2_section">-->
+
+
+            <!-- --------------------3 section-------------------- -->
+            <div class="content_3_section">
+                <!--sit-up : 윗몸 일으키기 - 근지구력 -->
+                <div>
+                    <div class="result_txt_part">근지구력</div>
+                    <div>
+                        <canvas id="situpChart"></canvas>
+                    </div>
+                </div>
+                <!--sit flex : 윗몸 앞으로 굽히기 - 유연성 -->
+                <div>
+                    <div class="result_txt_part">유연성</div>
+                    <div>
+                        <canvas id="sitflexChart"></canvas>
+                    </div>
+                </div>
+            </div><!--end of <div class="content_3_section">-->
+
+
+            <!-- --------------------4 section-------------------- -->
+            <div class="content_4_section">
+                <!--long run : 오래 달리기 - 심폐지구력 -->
+                <div>
+                    <div class="result_txt_part">심폐지구력</div>
+                    <canvas id="longrunChart"></canvas>
+                </div>
+                <!--run 10m : 왕복 달리기 - 민첩성 -->
+                <div>
+                    <div class="result_txt_part">민첩성</div>
+                    <canvas id="run10mChart"></canvas>
+                </div>
+            </div><!--end of <div class="content_4_section">-->
+
+            <!-- --------------------5 section-------------------- -->
+            <div class="content_5_section">
+                <!--long jump : 제자리 멀리뛰기 - 순발력 -->
+                <div>
+                    <div class="result_txt_part">순발력</div>
+                    <canvas id="longjumpChart"></canvas>
+                </div>
+                <!--total chart by AGE-->
+                <div>
+                    <div class="result_txt_part">종합결과</div>
+                    <canvas id="myRadarChart"></canvas>
+                </div>
+            </div>
+
+            <!-- --------------------6 section-------------------- -->
+            <div class="content_6_section">
+                <p><img src="../static/img/circle_logo_4.png">종합 평가 및 분석</p>
+                <div>
+                    000님의 실제 나이는 000, 신체 나이는 <span class="txt_highlight">{{results_age}}</span>입니다.<br>
+                    기초 체력 항목 비교 결과에 따르면 <span id="cnt_val1"></span>개의 항목이 평균 데이터와 비교하여 높은 값을 가지고 있고
+                    <span id="cnt_val2"></span> 개의 항목에서는 비교적 낮은 값을 가지고 있습니다.<br>
+                    따라서 이를 보완하기 위한 운동 방법은 아래와 같습니다.<br>
+                    버튼을 클릭하여 운동방법을 확인해보시기 바랍니다.
+                </div>
+            </div>
+
+            <!-- --------------------7 section-------------------- -->
+            <div class="content_7_section">
+                <p>운동추천</p>
+                <div id="button_section"></div>
+                <!-- -------------------------------------------------------------- -->
+                <script>
+                    //$("#button_section").append('<></>');
+
+                    function loadButton(){
+                        // input value
+                        let btn_group = [{
+                                value: "{{content['situp']}}",
+                                std: "{{pivot_data[0]}}",
+                                out: "근지구력",
+                                a:"#"
+                            },
+                            {
+                                value: "{{content['sitflex']}}",
+                                std: "{{pivot_data[1]}}",
+                                out: "유연성",
+                                a:"#"
+                            },
+                            {
+                                value: "{{content['longrun']}}",
+                                std: "{{pivot_data[2]}}",
+                                out: "순발력",
+                                a:"#"
+                            },
+                            {
+                                value: "{{content['run10m']}}",
+                                std: "{{pivot_data[3]}}",
+                                out: "민첩성",
+                                a:"#"
+                            },
+                            {
+                                value: "{{content['longjump']}}",
+                                std: "{{pivot_data[3]}}",
+                                out: "심폐지구력",
+                                a:"#"
+                            }
+                        ];
+                        //add buttons that have less value
+                        for(let i=0; i < btn_group.length; i++){
+                            if(btn_group[i].value < btn_group[i].std){
+                                $("#button_section").append('<a href="'+btn_group[i].a+'"><button type="button" class="btn_group">'+btn_group[i].out+'</button></a>');
+                            }
+                        }
+                        //add more button
+                        $("#button_section").append('<a href="#"><button type="button" class="btn_group">MORE</button></a>');
+
+                        // count needs
+                        let cnt_val = 0;
+                        for(let i=0; i< btn_group.length; i++){
+                            if(btn_group[i].value < btn_group[i].std){cnt_val++;}
+                        }
+                        console.log(cnt_val);
+                        document.getElementById("cnt_val1").append(5-cnt_val);
+                        document.getElementById("cnt_val2").append(cnt_val);
+
+                    }//--end of 'function loadButton()'
+                    loadButton();
+                </script>
+                <!-- -------------------------------------------------------------- -->
+            </div>
+
+
+
+
+            <!-- -------------------------------------------------------------- -->
+            <!--chart 공통 설정-->
+            <script>
+                Chart.defaults.global.defaultFontFamily = "Lato";
+                Chart.defaults.global.defaultFontSize = 12;
+            </script>
+            <!--myChart : horizontalBar-->
+            <script>
+                var ctx = document.getElementById("myChart").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'horizontalBar',
+                    data: {
+                        /*'situp','sitflex','longrun','run10m','longjump'*/
+                        labels: ['근지구력','유연성','순발력','민첩성','심폐지구력'],
+                        datasets: [
+                            {
+                                label: '나의 기록',
+                                data: [{{content['situp']}},  {{content['sitflex']}}, {{content['longrun']}}
+                                        ,{{content['run10m']}},{{content['longjump']}}
+                                ],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)'],
+                                    /*borderColor: [],*/
+                                borderWidth: 1,
+
+                            }
+                            ,
+                            {
+                                label: "평균값",
+                                data: [{{pivot_data[0]}},{{pivot_data[1]}},{{pivot_data[2]}},{{pivot_data[3]}},{{pivot_data[4]}}],
+                                backgroundColor: [
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)'
+                                ],
+                                /*borderColor: [],*/
+                                borderWidth: 1,
+                            }
+                        ]
+                    },
+                    options: options
+                });
+
+                var options = {
+                    responsive:false,
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                offsetGridLines: true
+                            }
+                        }]
+                    },
+                    legend : {
+                        display : true, //default : true
+                        position : 'right', // right, left, top, bottom
+                    }
+                };
+            </script>
+            <!-- -------------------------------------------------------------- -->
+            <!--myRadarChart : radar-->
+            <script>
+                var ctx = document.getElementById("myRadarChart").getContext('2d');
+                var options = {
+                    responsive:false,
+                    angleLines:{display: false},
+                    legend : {
+                        display : true, //default : true
+                        position : 'bottom' // right, left, top, bottom
+                    }
+                };
+                var myRadarChart = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['situp','sitflex','longrun','run10m','longjump'],
+                        datasets: [
+                            {
+                                label: '나의 기록',
+                                data: [{{content['situp']}},  {{content['sitflex']}}, {{content['longrun']}},{{content['run10m']}},{{content['longjump']}}],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 99, 132, 0.2)'],
+                                borderColor: [
+                                    'rgba(255,99,132,1)',
+                                    'rgba(255,99,132,1)',
+                                    'rgba(255,99,132,1)',
+                                    'rgba(255,99,132,1)',
+                                    'rgba(255,99,132,1)'],
+                                borderWidth: 1
+                            }
+                            ,
+                            {
+                                label: "평균값",
+                                    data: [{{pivot_data[0]}},{{pivot_data[1]}},{{pivot_data[2]}},{{pivot_data[3]}},{{pivot_data[4]}}],
+                                    backgroundColor: [
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(54, 162, 235, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                     options: options
+                });
+            </script>
+
+            <!-- -------------------------------------------------------------- -->
+            <!--0. situpChart : horizontalBar-->
+            <script>
+                var ctx = document.getElementById("situpChart").getContext('2d');
+                var options = {
+                    responsive:false,
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                offsetGridLines: true
+                            }
+                        }],
+                        yAxes: [{
+                            barPercentage: 0.3 //defalut : 0.9
+                        }]
+                    },
+                    legend : {
+                        display : true, //default : true
+                        position : 'bottom' // right, left, top, bottom
+                    }
+                };
+
+                var myChart = new Chart(ctx, {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: ['situp'],
+                        datasets: [
+                            {
+                                label: '나의 기록',
+                                data: [{{content['situp']}}],
+                                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                                borderColor: ['rgba(255,99,132,1)'],
+                                borderWidth: 1
+                            },
+                            {
+                                label: "평균값",
+                                data: [{{pivot_data[0]}}],
+                                backgroundColor: [
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(54, 162, 235, 1)'],
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: options
+                });
+
+            </script>
+            <!-- -------------------------------------------------------------- -->
+            <!--1. sitflexChart : horizontalBar-->
+            <script>
+                var ctx = document.getElementById("sitflexChart").getContext('2d');
+                var options = {
+                    responsive:false,
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                offsetGridLines: true
+                            }
+                        }],
+                        yAxes: [{
+                            barPercentage: 0.3 //defalut : 0.9
+                        }]
+                    },
+                    legend : {
+                        display : true, //default : true
+                        position : 'bottom' // right, left, top, bottom
+                    }
+                };
+
+                var myChart = new Chart(ctx, {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: false, //['sitflex']
+                        datasets: [
+                            {
+                                label: '나의 기록',
+                                data: [{{content['sitflex']}}],
+                                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                                borderColor: ['rgb(255,99,132,1)'],
+                                borderWidth: 1
+                            },
+                            {
+                                label: "평균값",
+                                data: [{{pivot_data[1]}}],
+                                backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+                                borderColor: ['rgb(54, 162, 235, 1)'],
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: options
+                });
+
+            </script>
+
+            <!-- -------------------------------------------------------------- -->
+            <!--2. longrunChart : line-->
+            <script>
+                var ctx = document.getElementById("longrunChart").getContext('2d');
+                var options = {
+                    responsive:false,
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                offsetGridLines: true
+                            }
+                        }]
+                    },
+                    legend : {
+                        display : true, //default : true
+                        position : 'bottom' // right, left, top, bottom
+                    }
+                };
+
+                var longrunChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['longrun'],
+                        datasets: [
+                            {
+                                label: '나의 기록',
+                                data: [{{content['longrun']}}],
+                                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                                borderColor: ['rgba(255,99,132,1)'],
+                                borderWidth: 1
+                            },
+                            {
+                                label: "평균값",
+                                data: [{{pivot_data[2]}}],
+                                backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+                                borderColor: ['rgba(54, 162, 235, 1)'],
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: options
+                });
+            </script>
+            <!-- -------------------------------------------------------------- -->
+            <!--3. run10mChart : line-->
+            <script>
+                var ctx = document.getElementById("run10mChart").getContext('2d');
+                var options = {
+                    responsive:false,
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                offsetGridLines: true
+                            }
+                        }]
+                    },
+                    legend : {
+                        display : true, //default : true
+                        position : 'bottom' // right, left, top, bottom
+                    }
+                };
+
+                var run10mChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['run10m'],
+                        datasets: [
+                            {
+                                label: '나의 기록',
+                                data: [{{content['run10m']}}],
+                                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                                borderColor: ['rgba(255,99,132,1)'],
+                                borderWidth: 1
+                            },
+                            {
+                                label: "평균값",
+                                data: [{{pivot_data[3]}}],
+                                backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+                                borderColor: ['rgba(54, 162, 235, 1)'],
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: options
+                });
+            </script>
+            <!-- -------------------------------------------------------------- -->
+            <!--4. longjumpChart : line-->
+            <script>
+                var ctx = document.getElementById("longjumpChart").getContext('2d');
+                var longjumpChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['longjump'],
+                        datasets: [
+                            {
+                                label: '나의 기록',
+                                data: [{{content['longjump']}}],
+                                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                                borderColor: ['rgba(255,99,132,1)'],
+                                borderWidth: 1
+                            },
+                            {
+                                label: "평균값",
+                                data: [{{pivot_data[4]}}],
+                                backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+                                borderColor: ['rgba(54, 162, 235, 1)'],
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: options
+                });
+                var options = {
+                    responsive:false,
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                offsetGridLines: true
+                            }
+                        }]
+                    }
+                };
+            </script>
+            <!-- -------------------------------------------------------------- -->
+            <!--나이에 따라서도 다른데...-->
+            <!--여성 : 18~22.9(정상), 23~27.9(경계), 28~32.9(이상), 33(비만)-->
+            <!--남성 : 8~15.9(정상), 16~19.9(경계), 20~24.9(이상), 25(비만)-->
+            <script>
+                var bodyCanvas = document.getElementById("myHalfDoughnut");
+
+                var bodyData = {
+                    labels: ['체지방률','end-line'],
+                    datasets: [{
+                            data: [{{results_body}}, 40-{{results_body}}],
+                            backgroundColor: ["rgba(255, 99, 132, 0.2)", "whitesmoke",],
+                            borderWidth: 0
+                        }]
+                };
+
+                var chartOptions = {
+                    rotation: -Math.PI,
+                    cutoutPercentage: 30,
+                    circumference: Math.PI,
+                    legend: {
+                        display: false
+                    },
+                    animation: {
+                        animateRotate: false,
+                        animateScale: true
+                    },
+                    tooltips : {
+                        enabled : true
+                    },
+                    responsive: false
+                };
+
+                var pieChart = new Chart(bodyCanvas, {
+                    type: 'doughnut',
+                    data: bodyData,
+                    options: chartOptions
+                });
+            </script>
+            <!-- -------------------------------------------------------------- -->
+
+
+        </div><!--end of <div class="content_group">-->
+    </form>
+</div><!--end of <div class="fithe_wrap">-->
+
+
+<!--=========================// START footer //=========================-->
+<div class="footer_group">
+    <!--kosmo info-->
+    <div>
+        <div>
+            <ul>
+                <li><a href="#">이용약관 ㅣ </a></li>
+                <li><a href="#">개인정보처리방침</a></li>
+            </ul>
+            <p>(153-759) 서울시 금천구 가산동 426-5 월드메르디앙 2차 404호</p>
+            <p>Copyright (C) 2021 KOSMO FITHE. All rights reserved.</p>
+            <ul class="sns">
+                <li><a href="#"><img src="../static/img/facebook_logo.png" width="25"></a></li>
+                <li><a href="https://www.instagram.com/fithe_2021/"><img src="../static/img/instagram_circle.png"
+                                                                         width="27"></a></li>
+                <li><a href="https://www.notion.so/springiscoming/2021-FITHE-8f4a814cfc5040bbbb92897833f7676a"><img
+                        src="../static/img/blog_logo.png" width="20"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--=========================// END footer //=========================-->
+
+</body>
+</html>
