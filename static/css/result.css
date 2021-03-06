@@ -162,6 +162,23 @@
     cursor: pointer;
 }
 
+#button_section2 button{margin-right: 10px;}
+/*-------btn-------*/
+.btn_group{
+    width: 100px;
+    height: 40px;
+    background-color: white;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    line-height: 40px;
+}
+.btn_group:hover{
+    background-color: var(--accent-color);
+    color: white;
+    font-weight:800;
+    cursor: pointer;
+}
 
 
 /*========================================================================*/

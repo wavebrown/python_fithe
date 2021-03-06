@@ -45,8 +45,14 @@
 </nav><!--end of <nav class="navbar">-->
 
 <div class="fithe_wrap">
-    <form method="post" class="content_wrap">
+    <form method="get" class="content_wrap" action="http://3.19.102.157:8080/schedulePopup.do">
         <!--content_head-->
+        <input type="hidden" name="situp" value="{{ content['situp'] }}"/>
+        <input type="hidden" name="bend" value="{{ content['bend'] }}"/>
+        <input type="hidden" name="jump" value="{{ content['jump'] }}"/>
+        <input type="hidden" name="race" value="{{ content['race'] }}"/>
+        <input type="hidden" name="mid" value="{{ content['mid'] }}"/>
+
         <div class="fit_title">
             기초체력 및 신체 분석 결과
         </div>
@@ -224,9 +230,12 @@
                 </script>
                 <!-- -------------------------------------------------------------- -->
             </div>
-
-
-
+                <div class="content_7_section">
+					<p>캘린더에 추가</p>
+					<div>
+                        <input type="button" class="btn_group" value="Calendar">
+                    </div>
+				</div>
 
             <!-- -------------------------------------------------------------- -->
             <!--chart 공통 설정-->
