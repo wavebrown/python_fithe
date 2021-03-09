@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <title>운동 측정 입력</title>
     <!--common stylesheet-->
-    <link rel="stylesheet" href="../static/css/style.css">
+    <!--<link rel="stylesheet" href="../static/css/style.css">-->
     <!--style-->
     <link rel="stylesheet" href="../static/css/result.css">
     <!--font-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/8af2116aa4.js" crossorigin="anonymous"></script>
+    <!--<link rel="preconnect" href="https://fonts.gstatic.com">-->
+    <!--<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">-->
+    <!--<script src="https://kit.fontawesome.com/8af2116aa4.js" crossorigin="anonymous"></script>-->
     <!--common script-->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="../static/js/menu.js" defer></script>
+    <!--<script src="../static/js/menu.js" defer></script>-->
     <!--javascript-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script>
@@ -27,34 +27,11 @@
 </head>
 <body>
 <!--navigator-->
-<nav class="navbar">
-    <!--logo-->
-    <div class="navbar_logo">
-        <i class="fas fa-anchor"></i>
-        <a href="">FITHE</a>
-    </div>
-    <!--menu-->
-    <ul class="navbar_menu">
-        <li><a href="http://localhost:5000">기초체력측정</a></li>
-        <li><a href="http://localhost:8088/FitHekakaomaplist.do">헬스장 추천</a></li>
-        <li><a href="http://localhost:8088/FitHe/communityList.do">커뮤니티</a></li>
-        <li><a href="http://localhost:8088/FitHe/mypage.do">마이페이지</a></li>
-    </ul>
-    <!--login icon-->
-    <ul class="navbar_icons">
-        <a href="http://localhost:8088/FitHe/memberLoginForm.do">
-            <li>로그인<i class="fas fa-user-plus"></i></li>
-        </a>
-    </ul>
-    <!--@pad @phone-->
-    <a href="#" class="navbar_toggleBtn">
-        <i class="fas fa-bars"></i>
-    </a>
-</nav><!--end of <nav class="navbar">-->
+{% include 'mainnav.html' %}
 
 <div class="fithe_wrap">
     <form name="resultForm" id="resultForm"
-          method="GET" class="content_wrap" action="http://fithe.shop:8080/FitHe/schedulePopup.do" target="popup_window">
+          method="GET" class="content_wrap" action="http://localhost:8088/FitHe/schedulePopup.do" target="popup_window">
         <!--content_head-->
         <input type="hidden" name="around" value="{{ content['run10m'] }}"/>
         <input type="hidden" name="situp" value="{{ content['situp'] }}"/>
@@ -168,7 +145,7 @@
             <div class="content_6_section">
                 <p><img src="../static/img/circle_logo_4.png">종합 평가 및 분석</p>
                 <div>
-                    000님의 실제 나이는 000, 신체 나이는 <span class="txt_highlight">{{results_age}}</span>입니다.<br>
+                    결과에 따른 신체 나이는 <span class="txt_highlight">{{results_age}}</span>입니다.<br>
                     기초 체력 항목 비교 결과에 따르면 <span id="cnt_val1"></span>개의 항목이 평균 데이터와 비교하여 높은 값을 가지고 있고
                     <span id="cnt_val2"></span> 개의 항목에서는 비교적 낮은 값을 가지고 있습니다.<br>
                     따라서 이를 보완하기 위한 운동 방법은 아래와 같습니다.<br>
