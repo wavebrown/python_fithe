@@ -54,7 +54,7 @@
 
 <div class="fithe_wrap">
     <form name="resultForm" id="resultForm"
-          method="GET" class="content_wrap" action="http://3.19.102.157:8080/FitHe/schedulePopup.do" target="popup_window">
+          method="GET" class="content_wrap" action="http://fithe.shop:8080/FitHe/schedulePopup.do" target="popup_window">
         <!--content_head-->
         <input type="hidden" name="around" value="{{ content['run10m'] }}"/>
         <input type="hidden" name="situp" value="{{ content['situp'] }}"/>
@@ -190,31 +190,31 @@
                                 value: "{{content['situp']}}",
                                 std: "{{pivot_data[0]}}",
                                 out: "근지구력",
-                                a:"#"
+                                a:"http://localhost:8088//FitHe/youtube.do?yid=1"
                             },
                             {
                                 value: "{{content['sitflex']}}",
                                 std: "{{pivot_data[1]}}",
                                 out: "유연성",
-                                a:"#"
+                                a:"http://localhost:8088//FitHe/youtube.do?yid=2"
                             },
                             {
                                 value: "{{content['longrun']}}",
                                 std: "{{pivot_data[2]}}",
                                 out: "순발력",
-                                a:"#"
+                                a:"http://localhost:8088//FitHe/youtube.do?yid=3"
                             },
                             {
                                 value: "{{content['run10m']}}",
                                 std: "{{pivot_data[3]}}",
                                 out: "민첩성",
-                                a:"#"
+                                a:"http://localhost:8088//FitHe/youtube.do?yid=4"
                             },
                             {
                                 value: "{{content['longjump']}}",
                                 std: "{{pivot_data[3]}}",
                                 out: "심폐지구력",
-                                a:"#"
+                                a:"http://localhost:8088//FitHe/youtube.do?yid=5"
                             }
                         ];
                         //add buttons that have less value
